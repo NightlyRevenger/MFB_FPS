@@ -52,11 +52,6 @@ function StartGL(fpsLimit, tgCanvas)
 			camera.rotation.x = -15 * (Math.PI / 180);
 
 			
-			//render_stats = new Stats();
-			//render_stats.domElement.style.position = 'absolute';
-			//render_stats.domElement.style.top = String(elt.offsetTop+1)+'px';
-			//render_stats.domElement.style.zIndex = 100;
-			//document.getElementById( tgCanvas ).appendChild( render_stats.domElement );
 			var render_stats = new Stats();
 			render_stats.showPanel( 0 );
 			render_stats.domElement.style.position = 'absolute';
