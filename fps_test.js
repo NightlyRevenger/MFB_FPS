@@ -38,7 +38,7 @@ function StartGL(fpsLimit, tgCanvas)
 
 			var mfbCube;
 			var loader = new THREE.TextureLoader();
-			loader.load( 'model/mfb_logo_256.jpg', function ( texture ) 
+			loader.load( 'mfb_logo_256_2.jpg', function ( texture ) 
 			{
 
 				var geometry = new THREE.BoxGeometry( 80, 31.2, 15.6 );
