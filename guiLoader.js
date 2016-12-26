@@ -7,7 +7,7 @@
 
 		boxSpeed= val;
 
-	}, false, 0.001,5 );
+	}, false, 0.1,6 );
 	
 	//addGui( 'FPS1', FPS1, function( val ) {
 
