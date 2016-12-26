@@ -1,6 +1,7 @@
-﻿var cubePosX=0;
+var cubePosX=0;
 var boxSpeed=2;
 var FPS1=60;
+var FPS2=30;
 var FPS1intervalID;
 var FPS2intervalID;
 
@@ -28,8 +29,8 @@ function StartGL(fpsLimit, tgCanvas)
 			while (elt.hasChildNodes())
 			{
 				elt.removeChild(elt.lastChild);
-				if (typeof FPS1intervalID !== 'undefined') 
-					clearInterval(FPS1intervalID);
+				if (typeof FPS2intervalID !== 'undefined') 
+					clearInterval(FPS2intervalID);
 			}
 		
 			
@@ -37,14 +38,13 @@ function StartGL(fpsLimit, tgCanvas)
 
 			var mfbCube;
 			var loader = new THREE.TextureLoader();
-			loader.load( 'mfb_logo_256_2.jpg', function ( texture ) 
+			loader.load( 'model/mfb_logo_256.jpg', function ( texture ) 
 			{
 
 				var geometry = new THREE.BoxGeometry( 80, 31.2, 15.6 );
 				var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
 				mfbCube = new THREE.Mesh( geometry, material );
 				scene.add(mfbCube);
-				//mfbCube.translateY(-10.105);
 			} );			
 			
 			camera.position.z = 100;
@@ -98,8 +98,8 @@ function StartGL(fpsLimit, tgCanvas)
 			requestAnimationFrame( render );
 		}, fpsLimit );
 		
-		if(tgCanvas=="container1")
-			FPS1intervalID=tmpIntervalID;
+		if(tgCanvas=="container2")
+			FPS2intervalID=tmpIntervalID;
 }
 
 function sleep(ms) 
@@ -116,4 +116,3 @@ function moveCube(speed)
 		cubePosX=-420.0;
 	}	
 }
-	
