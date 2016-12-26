@@ -111,9 +111,9 @@ function sleep(ms)
 function moveCube(speed) 
 {
 	cubePosX+=speed;
-	if(cubePosX> 380.6)
+	if(cubePosX> 420.0)
 	{
-		cubePosX=-385.9;
+		cubePosX=-420.0;
 	}	
 }
 	
