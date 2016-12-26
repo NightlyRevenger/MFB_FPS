@@ -1,4 +1,4 @@
-﻿function buildGui() 
+function buildGui() 
 {
 
 	clearGui();
@@ -9,11 +9,11 @@
 
 	}, false, 0.1,6 );
 	
-	//addGui( 'FPS1', FPS1, function( val ) {
+	addGui( 'FPS2', FPS2, function( val ) {
 
-		//StartGL(val,"container1");
+		StartGL(val,"container2");
 
-	//}, false, 10,120 );
+	}, false, 10,30 );
 
 }
 
