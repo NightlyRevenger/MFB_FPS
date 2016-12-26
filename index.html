@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>MFB fps</title>
+		
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/three.js"></script>
+		<script type="text/javascript" src="js/stats.min.js"></script>	
+		<script type="text/javascript" src="js/dat.gui.min.js"></script>
+		
+		<script type="text/javascript" src="js/guiLoader.js"></script>		
+		<script type="text/javascript" src="js/fps_test.js"></script>
+		<link rel="stylesheet" href="css/gl_style.css">
+		
+	</head>
+	<body>
+		<div class="container1" id="container1" ></div>
+		<div class="container1" id="container2" ></div>
+	</body>
+	
+		<script>
+			StartGL(60.0,"container1");
+			StartGL(30.0,"container2");
+			setInterval( function () 
+			{
+				moveCube(boxSpeed);
+			}, 1 );
+					buildGui();
+		</script>
+</html>
