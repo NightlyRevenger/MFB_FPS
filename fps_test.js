@@ -91,14 +91,21 @@ function animate()
 		
 	}, 1000/FPS1 );
 	
+	renderBox2();
+	
+}
+
+function renderBox2()
+{
+	if (typeof FPS2intervalID !== 'undefined') 
+		clearInterval(FPS2intervalID);
+
 	FPS2intervalID=setInterval( function () 
 	{
 		render_stats2.begin()
 		renderer2.render(scene, camera);
-		render_stats2.end();
-		
+		render_stats2.end();			
 	}, 1000/FPS2 );
-	
 }
 
 function StartGL(fpsLimit, tgCanvas)  
