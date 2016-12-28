@@ -29683,7 +29683,7 @@
 
 	Object.assign( TextureLoader.prototype, {
 
-		load: function ( url, onLoad, onProgress, onError ) {
+		load: function ( url, onLoad, callerObj, onProgress, onError ) {
 
 			var texture = new Texture();
 
@@ -29702,7 +29702,7 @@
 
 				if ( onLoad !== undefined ) {
 
-					onLoad( texture );
+					onLoad( texture,  callerObj);
 
 				}
 
