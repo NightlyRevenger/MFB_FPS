@@ -8,6 +8,7 @@ var gui, guiElements, param = { color: '0xffffff' };
 var CustomRender1;
 var CustomRender2;
 
+
 function StartRender()
 {
 	var render = function () 
@@ -16,37 +17,22 @@ function StartRender()
 		CustomRender1.RenderFrame()
 	};
 	
-	setInterval( function () 
+	/*setInterval( function () 
 	{
 		requestAnimationFrame(render);		
-	}, 1000/60.0 );
+	}, 1000/60.0 );//*/
 	
 	CustomRender2.StartRender();
+	
+	animate();
 }
 
 function animate() 
 {
-	var lastTime = performance.now();
-	var deltaTime=performance.now();
+	requestAnimationFrame( animate );
 	
-	var render1 = function () 
-	{		
-		render_stats1.begin();		
-		if (typeof mfbCube !== 'undefined') 
-		{
-			mfbCube.position.x=cubePosX;
-		}		
-		render_stats1.end();	
-		
-		renderer1.render(scene, camera);
-	};
-	
-	FPS1intervalID=setInterval( function () 
-	{
-		requestAnimationFrame( render1 );		
-	}, 1000/FPS1 );
-	
-	renderBox2();	
+	CustomRender1.mfbCubeX=cubePosX;
+	CustomRender1.RenderFrame()
 }
 
 
@@ -80,4 +66,3 @@ function fpsLock(fps)
 		return id;
 	};	
 }
-	
