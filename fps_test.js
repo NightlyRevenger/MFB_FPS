@@ -111,3 +111,15 @@ function moveCube(speed)
 		cubePosX=-420.0;
 	}	
 }
+
+function fpsLock(fps) 
+{			
+	lastTime = Date.now()
+	requestAnimationFrame = function ( callback ) 
+	{
+		var currTime = Date.now(), timeToCall = Math.max( 0, 1000/(fps) - ( currTime - lastTime ) );
+		var id = self.setTimeout( function() { callback( currTime + timeToCall ); }, timeToCall );
+		lastTime = currTime + timeToCall;
+		return id;
+	};	
+}
