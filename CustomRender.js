@@ -27,7 +27,7 @@
 		}
 		
 		var loader = new THREE.TextureLoader();
-		loader.load( 'model/mfb_logo_256.jpg', TexLoad, this );
+		loader.load( 'mfb_logo_256.jpg', TexLoad, this );
 		
 		this.camera.position.z = 100;
 		this.camera.position.y = 18;
