@@ -82,39 +82,22 @@ function animate()
 		render_stats1.end();			
 		
 		renderer1.render(scene, camera);
-		
-		deltaTime=performance.now()-lastTime;
-		
-		if(1000/(FPS2+10)-deltaTime<0)
-		{
-			render_stats2.begin()
-			lastTime = performance.now();
-			render_stats2.end();
-			renderer2.render(scene, camera);		
-		}
 
 	};
 	
-	var render2 = function () 
-	{
-		
-		render_stats2.begin();			
-		if (typeof mfbCube !== 'undefined') 
-		{
-			mfbCube.position.x=cubePosX;
-		}
-		
-		render_stats2.end();			
-		
-		renderer2.render(scene, camera);
-
-	};
-	
-	tmpIntervalID=setInterval( function () 
+	FPS1intervalID=setInterval( function () 
 	{
 		requestAnimationFrame( render1 );
 		
 	}, 1000/FPS1 );
+	
+	FPS2intervalID=setInterval( function () 
+	{
+		render_stats2.begin()
+		renderer2.render(scene, camera);
+		render_stats2.end();
+		
+	}, 1000/FPS2 );
 	
 }
 
