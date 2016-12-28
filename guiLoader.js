@@ -9,16 +9,8 @@ function buildGui()
 	
 	addGui( 'FPS2', FPS2, function( val ) 
 	{
-		FPS2=val;		
-		if (typeof FPS2intervalID !== 'undefined') 
-					clearInterval(FPS2intervalID);
-		
-		FPS2intervalID=setInterval( function () 
-		{
-			render_stats2.begin()
-			renderer2.render(scene, camera);
-			render_stats2.end();			
-		}, 1000/FPS2 );
+		FPS2=val;
+		renderBox2();
 
 	}, false, 1,30 );
 
