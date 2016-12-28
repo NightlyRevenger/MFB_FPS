@@ -9,7 +9,8 @@
 		<script type="text/javascript" src="stats.min.js"></script>	
 		<script type="text/javascript" src="dat.gui.min.js"></script>
 		
-		<script type="text/javascript" src="guiLoader.js"></script>		
+		<script type="text/javascript" src="guiLoader.js"></script>
+		<script type="text/javascript" src="CustomRender.js"></script>
 		<script type="text/javascript" src="fps_test.js"></script>
 		<link rel="stylesheet" href="gl_style.css">
 		
@@ -21,9 +22,14 @@
 	</body>
 	
 		<script>
-			init()
-			animate();
+			CustomRender1=new RenderContext(60,"container1");
+			CustomRender1.InitRender();
+			
+			CustomRender2=new RenderContext(30,"container2");
+			CustomRender2.InitRender();
+			
 			fpsLock(FPS1);
+			StartRender();
 			
 			setInterval( function () 
 			{
