@@ -23,11 +23,13 @@
 		<script>
 			StartGL(30.0,"container2");
 			StartGL(60.0,"container1");
-			//StartGL(24.0,"container3");
+			fpsLock(FPS1+FPS2+1);
+			
 			setInterval( function () 
 			{
 				moveCube(boxSpeed);
-			}, 1 );
-					buildGui();
+			}, 4 );
+			
+			buildGui();
 		</script>
 </html>
