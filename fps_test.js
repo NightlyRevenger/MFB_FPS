@@ -116,12 +116,6 @@ function animate()
 		
 	}, 1000/FPS1 );
 	
-	/*tmpIntervalID=setInterval( function () 
-	{
-		requestAnimationFrame( render2 );
-		
-	}, 1000/FPS2 );//*/
-	
 }
 
 function StartGL(fpsLimit, tgCanvas)  
