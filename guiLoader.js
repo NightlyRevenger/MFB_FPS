@@ -13,7 +13,6 @@ function buildGui()
 		CustomRender2.StopRender();
 		CustomRender2.FPSLimit=FPS2;
 		CustomRender2.StartRender();
-
 	}, false, 1,30 );
 
 }
