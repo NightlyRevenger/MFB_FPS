@@ -8,7 +8,6 @@ var gui, guiElements, param = { color: '0xffffff' };
 var CustomRender1;
 var CustomRender2;
 
-
 function StartRender()
 {
 	var render = function () 
@@ -31,28 +30,23 @@ function animate()
 	var deltaTime=performance.now();
 	
 	var render1 = function () 
-	{
-		
+	{		
 		render_stats1.begin();		
 		if (typeof mfbCube !== 'undefined') 
 		{
 			mfbCube.position.x=cubePosX;
-		}
-		
-		render_stats1.end();			
+		}		
+		render_stats1.end();	
 		
 		renderer1.render(scene, camera);
-
 	};
 	
 	FPS1intervalID=setInterval( function () 
 	{
-		requestAnimationFrame( render1 );
-		
+		requestAnimationFrame( render1 );		
 	}, 1000/FPS1 );
 	
-	renderBox2();
-	
+	renderBox2();	
 }
 
 
