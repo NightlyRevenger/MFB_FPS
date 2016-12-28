@@ -1,5 +1,5 @@
 var cubePosX=0;
-var boxSpeed=2;
+var boxSpeed=4;
 var FPS1=60;
 var FPS2=30;
 var FPS1intervalID;
