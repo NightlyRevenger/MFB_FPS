@@ -10,7 +10,9 @@ function buildGui()
 	addGui( 'FPS2', FPS2, function( val ) 
 	{
 		FPS2=val;
-		renderBox2();
+		CustomRender2.StopRender();
+		CustomRender2.FPSLimit=FPS2;
+		CustomRender2.StartRender();
 
 	}, false, 1,30 );
 
