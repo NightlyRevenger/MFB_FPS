@@ -1,0 +1,110 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("madfanboy.com") {
+  html, body 
+	{
+	 /*background-color: #000000;*/
+  }
+	.body-layout-Boxed .wrap {width: 95%;}
+	layout-Boxed .wrap { width: 95%; }
+	a 
+	{
+    color: #3a3a3a;
+		font-weight: bolder;
+  }
+	p.author, p.author a {
+    color: #83888b;
+  }
+	
+	#inner-wrap
+	{
+    background: #c1c9cd;*/
+  }
+	.forabg, .forumbg, .viewtopic_wrapper 
+	{
+    background-color: #3b4559;*/
+  }
+	.viewtopic_wrapper
+	{
+    padding: 8px;
+  }
+	.post 
+	{
+    /*border-color: #000000;*/
+		padding: 8px 10px;
+  }
+	.bg2 
+	{
+    background-color: #e0e8ec;
+  }
+	.bg1 
+	{
+    background-color: #e0e8ec;
+  }
+	.postprofile
+	{
+    padding: 1% 1%;
+		width: 10%;
+		border: 1px solid;
+    /*min-height: 80px;
+		max-width: 200px; 
+		min-width: 180px; ;  
+    border: 1px solid transparent;
+    border-width: 0 0 0 1px;
+    width: 22%;
+    float: right;
+    display: inline;
+    text-align: center; */
+  }
+	.postbody 
+	{
+		padding: 5px;
+		width: 86%;
+  }
+	.profile-rank img
+	{
+		width: 100%;
+	}
+	
+	li.row 
+	{
+    background-color: #e8f1f6;
+  }
+	
+	.navbar a
+	{
+    color: #636669;
+  }
+	.action-bar.bar-bottom 
+	{
+    margin-top: 30px;
+  }
+  .specialbutton, input.specialbutton, .panel .specialbutton, a.specialbutton, .scrollToTop    
+	{
+    background: #1c9bc9;
+  }
+	blockquote
+	{	
+    background-color: #c1c9cd;
+  }
+	blockquote blockquote 
+	{
+    background-color: #e0e8ec;
+  }
+	blockquote blockquote blockquote 
+	{
+    background-color: #c1c9cd;
+  }
+	blockquote blockquote blockquote blockquote
+	{
+    background-color: #e0e8ec;
+  }	
+	blockquote blockquote blockquote blockquote blockquote 
+	{
+    background-color: #c1c9cd;
+  }
+	blockquote blockquote blockquote blockquote blockquote blockquote
+	{
+    background-color: #e0e8ec;
+  }
+}
