@@ -17,17 +17,12 @@
 		this.scene = new THREE.Scene();
 		this.camera = new THREE.PerspectiveCamera( 75, this.Width/this.Height, 0.1, 1000 );
 		
-		var TexLoad = function (texture,obj) 
-		{
-			var geometry = new THREE.BoxGeometry( 80, 31.2, 15.6 );
-			var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
-			var mfbCube = new THREE.Mesh( geometry, material );
-			
-			obj.mfbCube=mfbCube;
-		}
-		
-		var loader = new THREE.TextureLoader();
-		loader.load( 'mfb_logo_256.jpg', TexLoad, this );
+		var texture = new THREE.TextureLoader().load( 'mfb_logo_256.jpg' );
+		var geometry = new THREE.BoxGeometry( 80, 31.2, 15.6 );
+		var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
+		var mfbCubeTmp = new THREE.Mesh( geometry, material );
+		this.mfbCube=mfbCubeTmp;
+
 		
 		this.camera.position.z = 100;
 		this.camera.position.y = 18;
