@@ -1,6 +1,9 @@
 function buildGui() 
 {
 	clearGui();
+	
+	CustomRender1.MotionBlurVal=110-MotionBlurStr;
+	CustomRender2.MotionBlurVal=110-MotionBlurStr;
 
 	addGui( 'Speed', boxSpeed, function( val ) 
 	{
@@ -21,9 +24,8 @@ function buildGui()
 		
 		if(val==0)
 			MotionBlurStr=90000;
-		
-		CustomRender1.MotionBlurVal=110-MotionBlurStr;
-		CustomRender2.MotionBlurVal=110-MotionBlurStr;
+		CustomRender1.MotionBlurVal=Math.abs(110-MotionBlurStr);
+		CustomRender2.MotionBlurVal=Math.abs(110-MotionBlurStr);
 	}, false, 0,100 );
 
 }

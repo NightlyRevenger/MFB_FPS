@@ -25,35 +25,45 @@ const motionBlurFragmentShader = `
 
 	void main() {
 
+		// Get the depth buffer value at this pixel.
 		float zOverW = texture2D(tDepth, vUv).x;
 
 		// clipPosition is the viewport position at this pixel in the range -1 to 1.
 		vec4 clipPosition = vec4(vUv.x * 2. - 1., vUv.y * 2. - 1., zOverW * 2. - 1., 1.);
 
+		// Transform by the view-projection inverse.
 		vec4 worldPosition = clipToWorldMatrix * clipPosition;
+		// Divide by w to get the world position.
 		worldPosition /= worldPosition.w;
 
 		vec4 previousClipPosition = worldPosition;
 
 		// Reduce motion blur due to camera translation especially at the screen center.
-		previousClipPosition.xyz -= cameraMove * (
-			1. - smoothstep(.3, 1., clamp(length(clipPosition.xy), 0., 1.))
-		);
+		//previousClipPosition.xyz -= cameraMove * (
+		//	1. - smoothstep(.3, 1., clamp(length(clipPosition.xy), 0., 1.))
+		//);
 
+		// Use the world position, and transform by the previous view-
+		// projection matrix.
 		previousClipPosition = previousWorldToClipMatrix * previousClipPosition;
+		// Convert to nonhomogeneous points [-1,1] by dividing by w.
 		previousClipPosition /= previousClipPosition.w;
 
+		// Use this frame's position and last frame's to compute the pixel
+		// velocity.
 		vec2 velocity = velocityFactor * (clipPosition - previousClipPosition).xy / (delta / 10.0);
 
 		vec4 finalColor = vec4(0.);
 		vec2 offset = vec2(0.);
-		float weight = 0.;
 		const int samples = 20;
 		for(int i = 0; i < samples; i++) {
-    			offset = velocity * (float(i) / (float(samples) - 1.) - .5);
-    			vec4 c = texture2D(tColor, vUv + offset);
+			offset = velocity * (float(i) / (float(samples) - 1.) - .5);
+			// Sample the color buffer along the velocity vector.
+    		vec4 c = texture2D(tColor, vUv + offset);
+			// Add the current color to our color sum.
 			finalColor += c;
 		}
+		// Average all of the samples to get the final blur color.
 		finalColor /= float(samples);
 		gl_FragColor = vec4(finalColor.rgb, 1.);
 

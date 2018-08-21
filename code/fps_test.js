@@ -1,6 +1,6 @@
 var cubePosX=0;
 var boxSpeed=3.5;
-var MotionBlurStr=90;
+var MotionBlurStr=35;
 var FPS1=60;
 var FPS2=30;
 var PreTime;

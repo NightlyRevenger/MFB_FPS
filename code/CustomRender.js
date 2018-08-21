@@ -66,7 +66,7 @@
 		renderPass.renderToScreen=false;
 		this.composer.addPass(renderPass);
 		
-		
+		/*
 		var vertexShade = this.ShaderLoader("resources/VertexSepiaShader.txt");
 		var fragShade = this.ShaderLoader("resources/FragmentSepiaShader.txt");
 		
@@ -82,7 +82,7 @@
 		
 		var sepiaPass = new THREE.ShaderPass(shaderMaterial);
 		this.composer.addPass(sepiaPass);	
-		sepiaPass.renderToScreen=true;
+		sepiaPass.renderToScreen=true;//*/
 		
 		this.motionBlur = new THREE.ShaderPass(motionBlurShader);
 		this.motionBlur.renderToScreen=true;
