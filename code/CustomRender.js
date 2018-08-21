@@ -6,7 +6,8 @@
 		this.tgCanvas=tgCanvas;
 		this.DOMElement=document.getElementById(tgCanvas);
 		this.Width=this.DOMElement.offsetWidth;
-		this.Height=this.DOMElement.offsetHeight 
+		this.Height=this.DOMElement.offsetHeight
+		this.MotionBlurStrength=25;
 		
 		//var cube={};
 		//this.Cube=cube;
@@ -115,7 +116,7 @@
 	
 	RenderFrame()
 	{
-		var delta=17;
+		var delta=this.MotionBlurStrength;
 		this.render_stats.begin();
 		//this.renderer.render(this.scene, this.camera);
 		this.renderer.render(this.scene, this.camera, this.renderTarget)
@@ -145,7 +146,8 @@
 	{
 		if (typeof this.Cube !== 'undefined') 
 		{
-			this.Cube.position.x=newValue;
+			//this.Cube.position.x=newValue;
+			this.camera.position.x=newValue*-1;
 		}
 	}
 	
@@ -168,6 +170,16 @@
 	set FPSLimit(newValue) 
 	{
 		this.FPS=newValue;
+	}
+	
+	get MotionBlurVal() 
+	{
+		return this.MotionBlurStrength;
+	}
+	
+	set MotionBlurVal(newValue) 
+	{
+		this.MotionBlurStrength=newValue;
 	}
 	
 	ShaderLoader(vertex_url) 

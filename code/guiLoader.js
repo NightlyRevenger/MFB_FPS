@@ -4,7 +4,7 @@ function buildGui()
 
 	addGui( 'Speed', boxSpeed, function( val ) 
 	{
-		boxSpeed= val;
+		boxSpeed=val;
 	}, false, 0.1,12 );
 	
 	addGui( 'FPS2', FPS2, function( val ) 
@@ -14,6 +14,11 @@ function buildGui()
 		CustomRender2.FPSLimit=FPS2;
 		CustomRender2.StartRender();
 	}, false, 1,30 );
+	
+	addGui( 'MotionBlur', MotionBlurStr, function( val ) 
+	{
+		MotionBlurStr=val;
+	}, false, 10,100 );
 
 }
 
