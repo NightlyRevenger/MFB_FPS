@@ -1,0 +1,15 @@
+﻿body { margin: auto; }
+			
+.container1 
+{
+	margin: auto;
+	width: 1280px; 
+	height: 288px
+}
+
+.spacer 
+{
+	margin: auto;
+	width: 1280px; 
+	height: 4px
+}
