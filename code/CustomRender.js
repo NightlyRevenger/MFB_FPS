@@ -40,7 +40,6 @@
 		
 		this.renderer = new THREE.WebGLRenderer({ 
 			antialias: true,
-			//alpha: true 
 		});
 		this.renderer.setClearColor( 0x000000 );
 		this.renderer.setPixelRatio( window.devicePixelRatio );
@@ -66,33 +65,16 @@
 		renderPass.renderToScreen=false;
 		this.composer.addPass(renderPass);
 		
-		/*
-		var vertexShade = this.ShaderLoader("resources/VertexSepiaShader.txt");
-		var fragShade = this.ShaderLoader("resources/FragmentSepiaShader.txt");
-		
-		var shaderMaterial =
-        new THREE.ShaderMaterial({
-			uniforms: {
-				"tDiffuse": { value: null },
-				"amount":   { value: 1.0 }
-			},
-            fragmentShader: fragShade,
-            vertexShader: vertexShade,
-        });
-		
-		var sepiaPass = new THREE.ShaderPass(shaderMaterial);
-		this.composer.addPass(sepiaPass);	
-		sepiaPass.renderToScreen=true;//*/
-		
 		this.motionBlur = new THREE.ShaderPass(motionBlurShader);
 		this.motionBlur.renderToScreen=true;
-		this.composer.addPass(this.motionBlur);
-		
+		this.composer.addPass(this.motionBlur);		
 		
 		this.previousMatrixWorldInverse = new THREE.Matrix4()
 		this.previousProjectionMatrix = new THREE.Matrix4()
 		this.previousCameraPosition = new THREE.Vector3()
 		this.tmpMatrix = new THREE.Matrix4()
+		
+		this.motionBlur.material.uniforms.velocityFactor.value = 1;
 	}
 	
 	
@@ -123,9 +105,8 @@
 		
 		this.motionBlur.material.uniforms.tColor.value = this.renderTarget.texture;
 		this.motionBlur.material.uniforms.tDepth.value = this.renderTarget.depthTexture;
-		this.motionBlur.material.uniforms.velocityFactor.value = 1;
 		this.motionBlur.material.uniforms.delta.value = delta;
-		// tricky part to compute the clip-to-world and world-to-clip matrices
+		//
 		this.motionBlur.material.uniforms.clipToWorldMatrix.value
 			.getInverse(this.camera.matrixWorldInverse).multiply(this.tmpMatrix.getInverse(this.camera.projectionMatrix));
 		this.motionBlur.material.uniforms.previousWorldToClipMatrix.value
@@ -148,7 +129,6 @@
 		{
 			//this.Cube.position.x=newValue;
 			this.camera.position.x=newValue*-1;
-			//this.camera.rotation.y=newValue;
 		}
 	}
 	
