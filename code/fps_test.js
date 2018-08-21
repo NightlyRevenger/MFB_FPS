@@ -1,6 +1,6 @@
 var cubePosX=0;
 var boxSpeed=3;
-var MotionBlurStr=25;
+var MotionBlurStr=32;
 var FPS1=60;
 var FPS2=30;
 
@@ -49,11 +49,13 @@ function sleep(ms)
 
 function moveCube(speed) 
 {
+	
 	cubePosX+=speed;
 	if(cubePosX> 420.0)
 	{
 		cubePosX=-420.0;
-	}
+	}//*/
+	//cubePosX+=speed/1000;
 	
 	CustomRender1.MotionBlurVal=MotionBlurStr;
 	CustomRender2.MotionBlurVal=MotionBlurStr;

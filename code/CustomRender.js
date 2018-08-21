@@ -148,6 +148,7 @@
 		{
 			//this.Cube.position.x=newValue;
 			this.camera.position.x=newValue*-1;
+			//this.camera.rotation.y=newValue;
 		}
 	}
 	
