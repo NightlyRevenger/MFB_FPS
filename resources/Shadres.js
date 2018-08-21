@@ -43,7 +43,7 @@ const motionBlurFragmentShader = `
 		previousClipPosition = previousWorldToClipMatrix * previousClipPosition;
 		previousClipPosition /= previousClipPosition.w;
 
-		vec2 velocity = velocityFactor * (clipPosition - previousClipPosition).xy / delta * 16.67;
+		vec2 velocity = velocityFactor * (clipPosition - previousClipPosition).xy / (delta / 10.0);
 
 		vec4 finalColor = vec4(0.);
 		vec2 offset = vec2(0.);

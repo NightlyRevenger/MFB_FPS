@@ -17,6 +17,7 @@
 	{
 		this.scene = new THREE.Scene();
 		this.camera = new THREE.PerspectiveCamera( 75, this.Width/this.Height, 0.1, 1000 );
+		//this.camera = new THREE.OrthographicCamera( this.Width / - 2, this.Width / 2, this.Height / 2, this.Height / - 2, 1, 1000 );
 		
 		var texture = new THREE.TextureLoader().load( 'resources/mfb_logo_256.jpg' );
 		var geometry = new THREE.BoxGeometry( 80, 31.2, 15.6 );
@@ -99,7 +100,6 @@
 	{
 		function func(renderClass) 
 		{
-			renderClass.mfbCubeX=cubePosX;
 			renderClass.RenderFrame()			
 		}
 		

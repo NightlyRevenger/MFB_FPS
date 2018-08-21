@@ -1,8 +1,9 @@
 var cubePosX=0;
-var boxSpeed=3;
-var MotionBlurStr=32;
+var boxSpeed=3.5;
+var MotionBlurStr=90;
 var FPS1=60;
 var FPS2=30;
+var PreTime;
 
 var gui, guiElements, param = { color: '0xffffff' };
 
@@ -12,6 +13,7 @@ var CustomRender2;
 
 function StartRender()
 {
+	PreTime=performance.now();
 	var render = function () 
 	{
 		CustomRender1.mfbCubeX=cubePosX;
@@ -31,8 +33,6 @@ function StartRender()
 function animate() 
 {
 	requestAnimationFrame( animate );
-	
-	CustomRender1.mfbCubeX=cubePosX;
 	CustomRender1.RenderFrame()
 }
 
@@ -49,16 +49,18 @@ function sleep(ms)
 
 function moveCube(speed) 
 {
+	var cTime=performance.now();
+	var dTime=cTime-PreTime;
+	PreTime=cTime;
 	
-	cubePosX+=speed;
+	cubePosX+=speed*dTime/5.0;
 	if(cubePosX> 420.0)
 	{
 		cubePosX=-420.0;
-	}//*/
+	}
+	CustomRender1.mfbCubeX=cubePosX;
+	CustomRender2.mfbCubeX=cubePosX;
 	//cubePosX+=speed/1000;
-	
-	CustomRender1.MotionBlurVal=MotionBlurStr;
-	CustomRender2.MotionBlurVal=MotionBlurStr;
 }
 
 function fpsLock(fps) 

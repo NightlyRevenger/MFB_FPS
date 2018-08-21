@@ -18,7 +18,13 @@ function buildGui()
 	addGui( 'MotionBlur', MotionBlurStr, function( val ) 
 	{
 		MotionBlurStr=val;
-	}, false, 10,100 );
+		
+		if(val==0)
+			MotionBlurStr=90000;
+		
+		CustomRender1.MotionBlurVal=110-MotionBlurStr;
+		CustomRender2.MotionBlurVal=110-MotionBlurStr;
+	}, false, 0,100 );
 
 }
 
