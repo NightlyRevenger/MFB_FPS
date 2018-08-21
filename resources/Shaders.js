@@ -1,5 +1,5 @@
 
-const motionBlurVertexShader = `
+var motionBlurVertexShader = `
 	varying vec2 vUv;
 
 	void main() {
@@ -9,7 +9,7 @@ const motionBlurVertexShader = `
 
 	}`
 
-const motionBlurFragmentShader = `
+var motionBlurFragmentShader = `
 	varying vec2 vUv;
 
 	uniform sampler2D tDepth;
@@ -74,7 +74,7 @@ const motionBlurFragmentShader = `
 		// gl_FragColor = vec4(vec3(zOverW), 1.);
 	}`
 
-const motionBlurShader = {
+var motionBlurShader = {
 
   uniforms: {
     tDepth: { type: 't', value: null },

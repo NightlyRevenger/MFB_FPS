@@ -99,7 +99,9 @@
 	RenderFrame()
 	{
 		var delta=this.MotionBlurStrength;
+		
 		this.render_stats.begin();
+		
 		//this.renderer.render(this.scene, this.camera);
 		this.renderer.render(this.scene, this.camera, this.renderTarget)
 		
@@ -112,7 +114,6 @@
 		this.motionBlur.material.uniforms.previousWorldToClipMatrix.value
 			.copy(this.previousProjectionMatrix.multiply(this.previousMatrixWorldInverse));
 		this.motionBlur.material.uniforms.cameraMove.value.copy(this.camera.position).sub(this.previousCameraPosition);
-
   
 		this.composer.render(delta);
 		
