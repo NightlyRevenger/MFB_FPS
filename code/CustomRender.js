@@ -36,13 +36,34 @@
 		this.render_stats.domElement.style.zIndex = 100;
 		this.DOMElement.appendChild( this.render_stats.dom );
 		
-		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
+		this.renderer = new THREE.WebGLRenderer({ 
+			antialias: true,
+			//alpha: true 
+		});
 		this.renderer.setClearColor( 0x000000 );
 		this.renderer.setPixelRatio( window.devicePixelRatio );
 		this.renderer.setSize( this.Width,this.Height );
 		this.DOMElement.appendChild( this.renderer.domElement );
 		
 		this.composer = new THREE.EffectComposer(this.renderer);
+		this.composer.setSize(this.Width,this.Height );
+		
+		this.InitPostProcessing();
+	}
+	
+	InitPostProcessing()
+	{
+		this.composer = new THREE.EffectComposer(this.renderer);
+		this.composer.setSize(this.Width,this.Height );
+		
+		this.renderTarget = new THREE.WebGLRenderTarget(this.Width,this.Height);
+		this.renderTarget.depthBuffer = true;
+		this.renderTarget.depthTexture = new THREE.DepthTexture();
+		
+		var renderPass = new THREE.RenderPass(this.scene, this.camera);
+		renderPass.renderToScreen=false;
+		this.composer.addPass(renderPass);
+		
 		
 		var vertexShade = this.ShaderLoader("resources/VertexSepiaShader.txt");
 		var fragShade = this.ShaderLoader("resources/FragmentSepiaShader.txt");
@@ -57,12 +78,21 @@
             vertexShader: vertexShade,
         });
 		
-		//var shaderPass = new THREE.ShaderPass(THREE.SepiaShader);
-		//this.composer.addPass(shaderPass);
-
-		//var renderPass = new THREE.RenderPass(this.scene, this.camera);
-		//this.composer.addPass(renderPass);		
+		var sepiaPass = new THREE.ShaderPass(shaderMaterial);
+		this.composer.addPass(sepiaPass);	
+		sepiaPass.renderToScreen=true;
+		
+		this.motionBlur = new THREE.ShaderPass(motionBlurShader);
+		this.motionBlur.renderToScreen=true;
+		this.composer.addPass(this.motionBlur);
+		
+		
+		this.previousMatrixWorldInverse = new THREE.Matrix4()
+		this.previousProjectionMatrix = new THREE.Matrix4()
+		this.previousCameraPosition = new THREE.Vector3()
+		this.tmpMatrix = new THREE.Matrix4()
 	}
+	
 	
 	StartRender()
 	{
@@ -85,9 +115,29 @@
 	
 	RenderFrame()
 	{
+		var delta=17;
 		this.render_stats.begin();
-		this.renderer.render(this.scene, this.camera);
-		this.composer.render();
+		//this.renderer.render(this.scene, this.camera);
+		this.renderer.render(this.scene, this.camera, this.renderTarget)
+		
+		this.motionBlur.material.uniforms.tColor.value = this.renderTarget.texture;
+		this.motionBlur.material.uniforms.tDepth.value = this.renderTarget.depthTexture;
+		this.motionBlur.material.uniforms.velocityFactor.value = 1;
+		this.motionBlur.material.uniforms.delta.value = delta;
+		// tricky part to compute the clip-to-world and world-to-clip matrices
+		this.motionBlur.material.uniforms.clipToWorldMatrix.value
+			.getInverse(this.camera.matrixWorldInverse).multiply(this.tmpMatrix.getInverse(this.camera.projectionMatrix));
+		this.motionBlur.material.uniforms.previousWorldToClipMatrix.value
+			.copy(this.previousProjectionMatrix.multiply(this.previousMatrixWorldInverse));
+		this.motionBlur.material.uniforms.cameraMove.value.copy(this.camera.position).sub(this.previousCameraPosition);
+
+  
+		this.composer.render(delta);
+		
+		this.previousMatrixWorldInverse.copy(this.camera.matrixWorldInverse)
+		this.previousProjectionMatrix.copy(this.camera.projectionMatrix)
+		this.previousCameraPosition.copy(this.camera.position)
+		  
 		this.render_stats.end();
 	}
 	
@@ -127,7 +177,7 @@
 		$.ajax({
 			type: "GET",
 			url: vertex_url,
-			type: "text",
+			//type: "text",
 			success: function (result) {
 				text = result;
 			},
@@ -136,5 +186,4 @@
 		
 		return text;
 	}
-
 }
